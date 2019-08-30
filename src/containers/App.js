@@ -14,7 +14,7 @@ class App extends React.Component {
         store: T.object.isRequired,
         isLoading: T.bool.isRequired,
         hasErrored: T.bool.isRequired,
-        validateToken: T.function.isRequired,
+        validateToken: T.func.isRequired,
     }
 
     componentDidMount() {
@@ -45,11 +45,9 @@ class App extends React.Component {
 
         return (
             <Provider store={store}>
-                <div style={{ height: '100%' }}>
-                    <StrangeRouter
-                        history={history}
-                        routes={routes} />
-                </div>
+                <StrangeRouter
+                    history={history}
+                    routes={routes} />
             </Provider>
         );
     }

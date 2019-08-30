@@ -1,18 +1,61 @@
 const React = require('react');
-const NavLink = require('react-router-dom').NavLink;
+const { connect } = require('react-redux');
+const T = require('prop-types');
 const Classes = require('./styles.scss');
+const UserFetch = require('../../actions/user');
 
-module.exports = () => (
+function UserDropdown(props) {
+    return (
+        <div className={Classes.dropdown}>
+            <button aria-haspopup='true' aria-expanded='false' className={Classes.user}>{props.user.name}</button>
+            <div className={Classes.menu}>
+                <button>Log out</button>
+            </div>
+        </div >
+    );
+}
 
-    <div>
-        <h1>Strangeluv</h1>
-        <NavLink exact to='/' activeClassName={Classes.activeRoute}>
-            Home
-        </NavLink>
-        {' · '}
-        <NavLink to='/counter' activeClassName={Classes.activeRoute}>
-            Counter
-        </NavLink>
-    </div>
+UserDropdown.propTypes = {
+    user: T.object.isRequired
+};
 
-);
+class Header extends React.Component {
+
+    static propTypes = {
+        fetchUser: T.func.isRequired,
+        userIsLoading: T.bool.isRequired,
+        user: T.object.isRequired
+    }
+
+    componentDidMount() {
+
+        this.props.fetchUser();
+
+    }
+
+    render() {
+        return (
+            <header className={Classes.header}>
+                <h1>Rapport</h1>
+
+                {this.props.userIsLoading ? <div /> : <UserDropdown {...this.props} />}
+            </header>
+        );
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        userIsLoading: state.userIsLoading,
+        userHasErrored: state.userHasErrored,
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUser: () => dispatch(UserFetch())
+    };
+};
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Header);

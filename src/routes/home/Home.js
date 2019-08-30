@@ -1,7 +1,5 @@
 const React = require('react');
 const { connect } = require('react-redux');
-const DuckImage = require('./assets/duck.jpg');
-const Classes = require('./Home.scss');
 
 class Home extends React.Component {
 
@@ -9,11 +7,6 @@ class Home extends React.Component {
         return (
             <div>
                 <h4>Welcome!</h4>
-                <img
-                    alt='This is a duck, because Redux!'
-                    className={Classes.duck}
-                    src={DuckImage}
-                />
             </div>
         );
     }

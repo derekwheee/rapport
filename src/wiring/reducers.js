@@ -4,6 +4,7 @@ const Wiring = require('./');
 exports.makeRoot = (asyncReducers) => {
 
     const reducers = Wiring.reducers();
+    const flattenedReducers = {};
 
     // Some reducer files may export multiple reducers
     // Find objects in `reducers` and flatten
@@ -12,14 +13,15 @@ exports.makeRoot = (asyncReducers) => {
             const reducer = reducers[key];
 
             if (typeof reducer !== 'function') {
-                Object.assign(reducers, { ...reducer });
-                delete reducers[key];
+                Object.assign(flattenedReducers, { ...reducer });
+            } else {
+                flattenedReducers[key] = reducer;
             }
         }
     }
 
     return Redux.combineReducers({
-        ...reducers,
+        ...flattenedReducers,
         ...asyncReducers
     });
 };

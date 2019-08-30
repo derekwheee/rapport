@@ -1,4 +1,66 @@
-.activeRoute {
-  font-weight: bold;
-  text-decoration: underline;
+.header {
+    display: grid;
+    grid-template-columns: auto auto;
+    position: relative;
+    background: #111;
+    color: white;
+
+    h1 {
+        align-self: center;
+        margin: 0;
+        padding: 0 2rem;
+    }
+
+    a {
+        color: white;
+    }
+
+    .dropdown {
+        justify-self: end;
+        align-self: center;
+
+        &:hover,
+        &:focus {
+            & .menu {
+                display: block;
+            }
+        } 
+    }
+
+    .user {
+        padding: 1.5em 2em;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        color: inherit;
+
+        &:hover,
+        &:focus {
+            outline: none;
+            background: #33f;
+        } 
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #111;
+
+        button {
+            display: block;
+            min-width: 15em;
+            padding: 1em;
+            background: transparent;
+            border: none;
+            text-align: right;
+
+            &:hover,
+            &:focus {
+                outline: none;
+                background: #33f;
+            }
+        }
+    }
 }
