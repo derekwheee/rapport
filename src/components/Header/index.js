@@ -1,13 +1,18 @@
 const React = require('react');
 const { connect } = require('react-redux');
 const T = require('prop-types');
+const { FontAwesomeIcon } = require('@fortawesome/react-fontawesome');
+const Icons = require('@fortawesome/free-solid-svg-icons');
 const Classes = require('./styles.scss');
 const UserFetch = require('../../actions/user');
 
 function UserDropdown(props) {
     return (
         <div className={Classes.dropdown}>
-            <button aria-haspopup='true' aria-expanded='false' className={Classes.user}>{props.user.name}</button>
+            <button aria-haspopup='true' aria-expanded='false' className={Classes.user}>
+                <FontAwesomeIcon icon={Icons.faUser} />
+                {props.user.name}
+            </button>
             <div className={Classes.menu}>
                 <button>Log out</button>
             </div>

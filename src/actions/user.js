@@ -16,7 +16,6 @@ const userIsLoading = (isLoading) => {
 };
 
 const userFetchDataSuccess = (user) => {
-    console.log(user);
     return {
         type: UserTypes.USER_FETCH_SUCCESS,
         user

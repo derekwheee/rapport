@@ -1,9 +1,12 @@
 .header {
     display: grid;
     grid-template-columns: auto auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
     position: relative;
-    background: #111;
-    color: white;
+    border-bottom: 1em solid #ddd;
+    background: #eee;
+    color: #111;
 
     h1 {
         align-self: center;
@@ -38,7 +41,12 @@
         &:focus {
             outline: none;
             background: #33f;
-        } 
+            color: white;
+        }
+
+        svg {
+            margin-right: 1em;
+        }
     }
 
     .menu {
@@ -46,7 +54,7 @@
         position: absolute;
         top: 100%;
         right: 0;
-        background: #111;
+        background: #eee;
 
         button {
             display: block;
@@ -60,6 +68,7 @@
             &:focus {
                 outline: none;
                 background: #33f;
+                color: white;
             }
         }
     }
